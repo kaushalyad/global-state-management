@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Home from "./pages/Home";
+import { Provider } from "react-redux";
+import ReduxStore from "./components/ReduxStore";
+import { GlobalStateProvider } from "./components/GlobalStateContext";
+import { enableStaticRendering } from "mobx-react-lite";
+enableStaticRendering(typeof window === "undefined");
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalStateProvider>
+      <Provider store={ReduxStore}>
+        <Home />
+      </Provider>
+    </GlobalStateProvider>
   );
 }
 
